@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PRIDE ONE 東北店</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  :root {
+    --black: #0a0a0c;
+    --panel: #17171b;
+    --panel-2: #1f1f24;
+    --red: #e10600;
+    --red-dark: #a30400;
+    --red-glow: rgba(225, 6, 0, 0.35);
+    --white: #ffffff;
+    --gray: #b7b8bf;
+    --gray-dim: #85868f;
+    --border: #2a2a30;
+    --font-heading: "Oswald", "Noto Sans JP", "Hiragino Kaku Gothic ProN", sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--black);
+    color: var(--white);
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+    line-height: 1.8;
+  }
+
+  a { color: inherit; }
+
+  .container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  h1, h2, h3 { margin: 0; font-family: var(--font-heading); }
+
+  /* ---- Checkered strip (racing accent) ---- */
+  .checker-strip {
+    height: 14px;
+    width: 100%;
+    background-image: repeating-conic-gradient(#000 0% 25%, #fff 0% 50%);
+    background-size: 16px 16px;
+    filter: opacity(0.9);
+  }
+
+  /* ---- Header ---- */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(10,10,12,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .header-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 21px;
+    letter-spacing: 0.03em;
+    color: #fff;
+    white-space: nowrap;
+  }
+
+  .logo .slash {
+    color: var(--red);
+    font-style: italic;
+    font-weight: 700;
+  }
+
+  .logo small {
+    display: block;
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--gray-dim);
+    letter-spacing: 0.1em;
+  }
+
+  nav.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+    flex-wrap: wrap;
+  }
+
+  nav.main-nav a {
+    font-size: 13.5px;
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--gray);
+    transition: color .15s ease;
+  }
+  nav.main-nav a:hover { color: var(--red); }
+
+  .btn-race {
+    display: inline-block;
+    transform: skewX(-10deg);
+    background: var(--red);
+    padding: 1px;
+    text-decoration: none;
+    transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+  }
+
+  .btn-race span {
+    display: block;
+    transform: skewX(10deg);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: #fff;
+    padding: 11px 24px;
+  }
+
+  .btn-race:hover { background: var(--red-dark); transform: skewX(-10deg) translateY(-2px); box-shadow: 0 8px 18px var(--red-glow); }
+
+  .btn-race.outline {
+    background: transparent;
+    border: 1.5px solid rgba(255,255,255,0.5);
+  }
+  .btn-race.outline:hover { background: rgba(255,255,255,0.08); border-color: #fff; }
+
+  .header-cta { font-size: 12.5px; }
+  .header-cta span { padding: 9px 20px; }
+
+  /* ---- Hero ---- */
+  .hero {
+    position: relative;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    padding: 120px 24px 90px;
+    overflow: hidden;
+    background-color: #0a0a0c;
+    /*
+      ▼ 迫力あるバイク／ライダー写真を設定する場合は、下記コメントを外して画像パスを指定してください。
+      グラデーションが重なるため、文字の視認性は保たれます。
+      background-image:
+        linear-gradient(110deg, rgba(10,10,12,0.92) 30%, rgba(163,4,0,0.55)),
+        url('images/hero-bike.jpg');
+    */
+    background-image:
+      linear-gradient(110deg, rgba(10,10,12,0.96) 40%, rgba(163,4,0,0.45)),
+      radial-gradient(circle at 85% 30%, rgba(225,6,0,0.18) 0, transparent 55%);
+    background-size: cover;
+    background-position: center;
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 60%;
+    height: 140%;
+    background: linear-gradient(100deg, transparent 40%, rgba(225,6,0,0.14) 42%, rgba(225,6,0,0.14) 46%, transparent 48%,
+                                 transparent 60%, rgba(255,255,255,0.05) 62%, rgba(255,255,255,0.05) 64%, transparent 66%);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 620px;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transform: skewX(-10deg);
+    background: var(--red);
+    padding: 7px 16px 7px 14px;
+    margin-bottom: 26px;
+  }
+  .hero-eyebrow span {
+    display: block;
+    transform: skewX(10deg);
+    font-family: var(--font-heading);
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #fff;
+  }
+
+  .hero h1 {
+    font-size: 42px;
+    line-height: 1.35;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+
+  .hero h1 .accent { color: var(--red); }
+
+  .hero .mission {
+    font-size: 14.5px;
+    color: var(--gray);
+    max-width: 480px;
+    margin: 0 0 34px;
+  }
+
+  .hero .mission strong { color: #fff; }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  /* ---- Sections shared ---- */
+  section { padding: 90px 0; position: relative; }
+  section.alt { background: #0f0f12; }
+
+  .section-head {
+    max-width: 600px;
+    margin: 0 auto 50px;
+    text-align: center;
+  }
+
+  .section-eyebrow {
+    display: inline-flex;
+    transform: skewX(-10deg);
+    background: rgba(225,6,0,0.15);
+    border: 1px solid rgba(225,6,0,0.4);
+    padding: 6px 14px;
+    margin-bottom: 16px;
+  }
+  .section-eyebrow span {
+    display: block;
+    transform: skewX(10deg);
+    font-family: var(--font-heading);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: var(--red);
+    text-transform: uppercase;
+  }
+
+  .section-head h2 {
+    font-size: 27px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    letter-spacing: 0.01em;
+  }
+
+  .section-head p {
+    font-size: 14px;
+    color: var(--gray);
+    margin: 0;
+  }
+
+  /* ---- MFJ badge banner ---- */
+  .badge-banner {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    background: linear-gradient(100deg, var(--panel), var(--panel-2));
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--red);
+    border-radius: 4px;
+    padding: 22px 28px;
+    margin-bottom: 44px;
+  }
+
+  .badge-banner .badge-icon {
+    width: 54px;
+    height: 54px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--red);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+  }
+
+  .badge-banner h3 {
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+
+  .badge-banner p {
+    margin: 0;
+    font-size: 13px;
+    color: var(--gray);
+  }
+
+  /* ---- Feature cards ---- */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+  }
+
+  .feature-card {
+    position: relative;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 28px 22px;
+    overflow: hidden;
+    transition: transform .2s ease, border-color .2s ease;
+  }
+
+  .feature-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 3px;
+    background: repeating-linear-gradient(-45deg, var(--red) 0 8px, transparent 8px 16px);
+  }
+
+  .feature-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--red);
+  }
+
+  .feature-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 10px;
+    background: rgba(225,6,0,0.14);
+    color: var(--red);
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+  }
+
+  .feature-card h3 {
+    font-size: 15.5px;
+    margin-bottom: 10px;
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 700;
+  }
+
+  .feature-card p {
+    font-size: 13px;
+    color: var(--gray);
+    margin: 0;
+  }
+
+  /* ---- Flow steps ---- */
+  .flow-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+
+  .flow-step {
+    position: relative;
+    text-align: center;
+    padding: 0 16px;
+  }
+
+  .flow-step::after {
+    content: "";
+    position: absolute;
+    top: 30px;
+    right: -50%;
+    width: 100%;
+    height: 2px;
+    background: repeating-linear-gradient(90deg, var(--red) 0 8px, transparent 8px 14px);
+  }
+  .flow-step:last-child::after { display: none; }
+
+  .flow-number {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 18px;
+    position: relative;
+    z-index: 2;
+    background: var(--red);
+    transform: skewX(-10deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 20px var(--red-glow);
+  }
+  .flow-number span {
+    display: block;
+    transform: skewX(10deg);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 22px;
+    color: #fff;
+  }
+
+  .flow-step h3 {
+    font-size: 15px;
+    margin-bottom: 8px;
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 700;
+  }
+
+  .flow-step p {
+    font-size: 12.5px;
+    color: var(--gray);
+    margin: 0;
+  }
+
+  /* ---- Store info ---- */
+  .store-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .info-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 30px;
+  }
+
+  .info-card h3 {
+    font-size: 15px;
+    color: #fff;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 700;
+  }
+
+  .info-card h3 i {
+    color: var(--red);
+    font-size: 15px;
+  }
+
+  .info-row {
+    display: flex;
+    gap: 14px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13.5px;
+  }
+  .info-row:last-child { border-bottom: none; }
+
+  .info-row .label {
+    flex: 0 0 90px;
+    font-weight: 700;
+    color: var(--red);
+  }
+  .info-row .value { color: var(--gray); }
+  .info-row .value strong { color: #fff; }
+
+  .map-placeholder {
+    grid-column: 1 / -1;
+    aspect-ratio: 16 / 5;
+    border-radius: 6px;
+    border: 2px dashed #3a3a42;
+    background: var(--panel-2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: var(--gray);
+    text-align: center;
+  }
+  .map-placeholder .icon { font-size: 30px; color: var(--red); }
+  .map-placeholder span { font-size: 13px; opacity: 0.85; }
+
+  /* ---- Contact / reservation ---- */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 36px;
+    align-items: start;
+  }
+
+  .contact-side {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 18px 20px;
+  }
+
+  .contact-item .ci-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 8px;
+    background: rgba(225,6,0,0.14);
+    color: var(--red);
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .contact-item .ci-label { font-size: 11.5px; color: var(--gray-dim); margin-bottom: 2px; }
+  .contact-item .ci-value { font-size: 14.5px; font-weight: 700; color: #fff; }
+
+  .contact-form {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  .form-field { display: flex; flex-direction: column; gap: 6px; }
+  .form-field label { font-size: 12.5px; font-weight: 700; color: var(--gray); }
+
+  .form-field input,
+  .form-field select,
+  .form-field textarea {
+    background: #0f0f12;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 11px 14px;
+    font-size: 13.5px;
+    color: #fff;
+    font-family: inherit;
+    outline: none;
+    resize: vertical;
+  }
+  .form-field input:focus,
+  .form-field select:focus,
+  .form-field textarea:focus { border-color: var(--red); }
+
+  .form-submit-wrap { margin-top: 4px; }
+
+  .form-submit {
+    display: inline-block;
+    transform: skewX(-10deg);
+    background: var(--red);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+  .form-submit span {
+    display: block;
+    transform: skewX(10deg);
+    padding: 13px 34px;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    color: #fff;
+  }
+  .form-submit:hover { background: var(--red-dark); }
+
+  .form-note {
+    font-size: 11.5px;
+    color: var(--gray-dim);
+    margin: 0;
+  }
+
+  /* ---- Footer ---- */
+  footer {
+    background: #050506;
+    padding: 44px 24px 28px;
+    text-align: center;
+    border-top: 1px solid var(--border);
+  }
+
+  footer .foot-logo {
+    font-family: var(--font-heading);
+    font-size: 19px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  footer .foot-logo .slash { color: var(--red); font-style: italic; }
+
+  footer .foot-address {
+    font-size: 12px;
+    color: var(--gray-dim);
+    margin-bottom: 18px;
+  }
+
+  footer .copyright {
+    font-size: 11px;
+    color: #555560;
+  }
+
+  /* ---- Responsive ---- */
+  @media (max-width: 900px) {
+    nav.main-nav { display: none; }
+    .feature-grid { grid-template-columns: 1fr 1fr; }
+    .flow-grid { grid-template-columns: 1fr 1fr; row-gap: 40px; }
+    .flow-step::after { display: none; }
+    .store-grid, .contact-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 32px; }
+  }
+
+  @media (max-width: 520px) {
+    .feature-grid { grid-template-columns: 1fr; }
+    .flow-grid { grid-template-columns: 1fr; }
+    section { padding: 64px 0; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ================= Header ================= -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="logo" href="#top">
+        PRIDE <span class="slash">/</span> ONE
+        <small>東北店</small>
+      </a>
+      <nav class="main-nav">
+        <a href="#products">商品紹介</a>
+        <a href="#flow">試着・オーダー</a>
+        <a href="#store">取扱店情報</a>
+        <a href="#contact">お問い合わせ</a>
+      </nav>
+      <a class="btn-race header-cta" href="#contact"><span>試着予約</span></a>
+    </div>
+  </header>
+
+  <!-- ================= Hero ================= -->
+  <section class="hero" id="top">
+    <!-- ここに迫力あるバイク／ライダーの写真を設定してください（上部スタイルのコメント参照） -->
+    <div class="container hero-inner">
+      <div class="hero-eyebrow"><span>PRIDE ONE 東北店 ／ エアバッグ内蔵レーシングスーツ専門店</span></div>
+      <h1>攻めるライディングに、<br><span class="accent">守り</span>の技術を。</h1>
+      <p class="mission">
+        私たちの使命は<strong>「ライダーの怪我を減らす」</strong>こと。転倒時に瞬時に展開するエアバッグシステムを内蔵したレーシングスーツで、
+        攻めるライディングと安全性の両立をサポートします。
+      </p>
+      <div class="hero-actions">
+        <a class="btn-race" href="#contact"><span>試着予約はこちら</span></a>
+        <a class="btn-race outline" href="#products"><span>商品を見る</span></a>
+      </div>
+    </div>
+  </section>
+
+  <div class="checker-strip"></div>
+
+  <!-- ================= 商品紹介 ================= -->
+  <section id="products">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-eyebrow"><span>Products</span></div>
+        <h2>エアバッグ内蔵レーシングスーツ</h2>
+        <p>転倒の衝撃からライダーを守る、最先端のプロテクション技術。</p>
+      </div>
+
+      <div class="badge-banner">
+        <div class="badge-icon"><i class="fa-solid fa-certificate"></i></div>
+        <div>
+          <h3>MFJ公認モデルを取扱い</h3>
+          <p>当店で扱うエアバッグ内蔵スーツは、MFJ（一般財団法人 モーターサイクルスポーツ協会）公認モデル。サーキット走行・レース参戦にも安心してご使用いただけます。</p>
+        </div>
+      </div>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+          <h3>瞬時に展開するエアバッグ</h3>
+          <p>転倒を検知した瞬間にエアバッグが展開し、頸部・鎖骨・脊椎など重要な部位を保護します。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-gauge-high"></i></div>
+          <h3>高精度センサー制御</h3>
+          <p>走行中の姿勢や挙動を常時解析し、転倒時のみ的確に作動する高精度なセンサーシステムを搭載。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-motorcycle"></i></div>
+          <h3>MFJ公認</h3>
+          <p>公式競技規則に適合したMFJ公認モデル。レースからストリートまで幅広くご使用いただけます。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-ruler"></i></div>
+          <h3>攻めを支える快適設計</h3>
+          <p>高い通気性と可動域を両立したパターン設計で、レース本番のパフォーマンスを妨げません。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 試着・オーダーの流れ ================= -->
+  <section class="alt" id="flow">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-eyebrow"><span>Flow</span></div>
+        <h2>試着・オーダーの流れ</h2>
+        <p>体型やライディングスタイルに合わせて、専門スタッフが丁寧にサポートします。</p>
+      </div>
+
+      <div class="flow-grid">
+        <div class="flow-step">
+          <div class="flow-number"><span>1</span></div>
+          <h3>ご来店・ヒアリング</h3>
+          <p>ライディングスタイルや体型、ご予算などを丁寧にヒアリングします。</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-number"><span>2</span></div>
+          <h3>試着・サイズ確認</h3>
+          <p>実際にスーツを試着し、フィット感やライディングポジションでの可動域を確認します。</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-number"><span>3</span></div>
+          <h3>カスタムオーダー</h3>
+          <p>サイズ・カラー・エアバッグシステムの仕様を選択し、最適な一着をオーダーします。</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-number"><span>4</span></div>
+          <h3>納品・使用説明</h3>
+          <p>納品時にエアバッグシステムの装着方法・作動確認方法を丁寧にご説明します。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 取扱店情報 ================= -->
+  <section id="store">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-eyebrow"><span>Store</span></div>
+        <h2>取扱店情報</h2>
+        <p>岩手県奥州市を拠点に、東北エリア全域のライダーの皆様をサポートしています。</p>
+      </div>
+
+      <div class="store-grid">
+        <div class="info-card">
+          <h3><i class="fa-solid fa-location-dot"></i> 店舗情報</h3>
+          <div class="info-row">
+            <span class="label">店舗名</span>
+            <span class="value"><strong>PRIDE ONE 東北店</strong></span>
+          </div>
+          <div class="info-row">
+            <span class="label">住所</span>
+            <span class="value">岩手県奥州市○○町○-○-○（サンプル住所）</span>
+          </div>
+          <div class="info-row">
+            <span class="label">電話</span>
+            <span class="value">0197-00-0000（サンプル）</span>
+          </div>
+          <div class="info-row">
+            <span class="label">駐車場</span>
+            <span class="value">店舗前に専用駐車場あり</span>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <h3><i class="fa-solid fa-map"></i> 対応エリア・営業時間</h3>
+          <div class="info-row">
+            <span class="label">対応エリア</span>
+            <span class="value">岩手県内はもちろん、東北エリア全域に対応（出張採寸・配送相談可）</span>
+          </div>
+          <div class="info-row">
+            <span class="label">営業時間</span>
+            <span class="value">10:00〜19:00</span>
+          </div>
+          <div class="info-row">
+            <span class="label">定休日</span>
+            <span class="value">水曜日（サンプル）</span>
+          </div>
+          <div class="info-row">
+            <span class="label">試着</span>
+            <span class="value">完全予約制を推奨しております</span>
+          </div>
+        </div>
+
+        <div class="map-placeholder">
+          <!-- ここにGoogleマップの埋め込み（iframe）などを設置してください -->
+          <div class="icon"><i class="fa-solid fa-map-location-dot"></i></div>
+          <span>地図（Googleマップ）埋め込みスペース</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="checker-strip"></div>
+
+  <!-- ================= お問い合わせ・試着予約 ================= -->
+  <section class="alt" id="contact">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-eyebrow"><span>Contact</span></div>
+        <h2>お問い合わせ・試着予約</h2>
+        <p>エアバッグ内蔵スーツについてのご質問、試着のご予約はこちらから。</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-side">
+          <div class="contact-item">
+            <div class="ci-icon"><i class="fa-solid fa-phone"></i></div>
+            <div>
+              <div class="ci-label">お電話でのご予約</div>
+              <div class="ci-value">0197-00-0000（サンプル）</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-icon"><i class="fa-solid fa-envelope"></i></div>
+            <div>
+              <div class="ci-label">メールでのお問い合わせ</div>
+              <div class="ci-value">info@example.com（サンプル）</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-icon"><i class="fa-solid fa-clock"></i></div>
+            <div>
+              <div class="ci-label">営業時間</div>
+              <div class="ci-value">10:00〜19:00（水曜定休）</div>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form" onsubmit="return false;">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="name">お名前</label>
+              <input type="text" id="name" name="name" placeholder="山田 太郎">
+            </div>
+            <div class="form-field">
+              <label for="tel">電話番号</label>
+              <input type="tel" id="tel" name="tel" placeholder="090-0000-0000">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="date">希望日時</label>
+              <input type="text" id="date" name="date" placeholder="例：9/20（日） 14:00頃">
+            </div>
+            <div class="form-field">
+              <label for="purpose">ご希望内容</label>
+              <select id="purpose" name="purpose">
+                <option>試着のみ希望</option>
+                <option>購入を検討中</option>
+                <option>レース使用を検討中</option>
+                <option>その他・ご相談</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="message">お問い合わせ内容</label>
+            <textarea id="message" name="message" rows="4" placeholder="ご希望のモデルやサイズ、ご質問などをご記入ください"></textarea>
+          </div>
+          <div class="form-submit-wrap">
+            <button type="submit" class="form-submit"><span>予約を送信する</span></button>
+          </div>
+          <p class="form-note">※ このフォームはサンプルです。実際に送信するには、サーバー側の処理を別途設定してください。</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Footer ================= -->
+  <footer>
+    <div class="foot-logo">PRIDE <span class="slash">/</span> ONE 東北店</div>
+    <div class="foot-address">岩手県奥州市○○町○-○-○（サンプル住所）／ 東北エリア対応</div>
+    <div class="copyright">© 2026 PRIDE ONE 東北店（サンプルページ）</div>
+  </footer>
+
+</body>
+</html>
